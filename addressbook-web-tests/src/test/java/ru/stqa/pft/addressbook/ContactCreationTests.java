@@ -6,10 +6,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
-import ru.stqa.pft.addressbook.ContactDataCompanyAddr;
-import ru.stqa.pft.addressbook.ContactDataEmailHomepage;
-import ru.stqa.pft.addressbook.ContactDataFIO;
-import ru.stqa.pft.addressbook.ContactDataPhoneNumbers;
+import ru.stqa.pft.addressbook.*;
 
 public class ContactCreationTests {
   ChromeDriver wd;
@@ -34,12 +31,14 @@ public class ContactCreationTests {
   }
 
   @Test
-  public void ContactCreationTests() {
+  public void testContactCreation() {
     initContactCreation();
-    fillContactForm(new ContactDataFIO("Vadim", "Sergeevich", "Bryushkov", "V@DikO.o8"),
+    fillContactForm(new ContactDataFIO("Petr", "Petrovich", "Petrov", "petrov1987"),
                     new ContactDataCompanyAddr("test1", "HOME", "Penza, Russia"),
                     new ContactDataPhoneNumbers("+7 (841) 222-22-22", "+7 (927) 333-22-11", "+7 (841) 111-11-11", "14567"),
-                    new ContactDataEmailHomepage("vadik008@mail.ru", "vadik008@rambler.ru", "vadik008@nxt.ru", "http://vk.com/bryushkov_vadim"));
+                    new ContactDataEmailHomepage("mail1@mail.ru", "mail2@rambler.ru", "mail3@nxt.ru", "http://vk.com/petrov_petr"),
+                    new ContactDataBirthday("17", "9", "1987"),
+                    new ContactDataAnniversary("17", "9", "2007"));
     submitContactCreation();
   }
 
@@ -49,17 +48,16 @@ public class ContactCreationTests {
 
   private void fillContactForm(ContactDataFIO contactDataFIO,
                                ContactDataCompanyAddr contactDataCompanyAddr,
-                               ContactDataPhoneNumbers contactDataPhoneNumbers, ContactDataEmailHomepage contactDataEmailHomepage) {
+                               ContactDataPhoneNumbers contactDataPhoneNumbers,
+                               ContactDataEmailHomepage contactDataEmailHomepage,
+                               ContactDataBirthday contactDataBirthday,
+                               ContactDataAnniversary contactDataAnniversary) {
     fillFIO(contactDataFIO.getFname(), contactDataFIO.getMname(), contactDataFIO.getLname(), contactDataFIO.getNickname());
     fillCpmpanyAddr(contactDataCompanyAddr.getTitle(), contactDataCompanyAddr.getCompany(), contactDataCompanyAddr.getAddress());
     fillPhoneNumbers(contactDataPhoneNumbers.getHome_pnmbr(), contactDataPhoneNumbers.getMobile_pnmbr(), contactDataPhoneNumbers.getWork_pnmbr(), contactDataPhoneNumbers.getFax_nmbr());
     fillEmailHomepage(contactDataEmailHomepage.getEmail1(), contactDataEmailHomepage.getEmail2(), contactDataEmailHomepage.getEmail3(), contactDataEmailHomepage.getHomepage());
-    fillBirthday("3", "5", "1980");
-    fillAnniversary("3", "5", "1990");
-    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[5]")).isSelected()) {
-      wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[5]")).click();
-  }
-
+    fillBirthday(contactDataBirthday.getBday(), contactDataBirthday.getBmonth(), contactDataBirthday.getByear());
+    fillAnniversary(contactDataAnniversary.getAday(), contactDataAnniversary.getAmonth(), contactDataAnniversary.getAyear());
 }
 
   private void fillAnniversary(String aday, String amonth, String ayear) {
