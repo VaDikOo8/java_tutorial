@@ -12,6 +12,6 @@ public class DistancePoint {
     Point p2 = new Point(2.2, 1.1);
     System.out.println("Точка 2 с координатами (" + p2.x + ";" + p2.y + ")");
 
-    System.out.println("Расстояние между двумя точками координат равно " + p1.distance(p1, p2));
+    System.out.println("Расстояние между двумя точками координат равно " + p1.distance(p2));
   }
 }
