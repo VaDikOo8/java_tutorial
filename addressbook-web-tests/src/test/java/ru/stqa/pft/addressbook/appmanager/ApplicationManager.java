@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
  * Created by Вадим on 29.10.2016.
  */
 public class ApplicationManager {
-
   ChromeDriver wd;
 
   private ContactHelper contactHelper;

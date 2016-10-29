@@ -24,5 +24,4 @@ public class ContactCreationTests extends TestBase {
     // 1 - "-";
     // 2-13 - "January"-"December".
   }
-
 }
