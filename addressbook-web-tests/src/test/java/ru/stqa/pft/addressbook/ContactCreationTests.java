@@ -1,3 +1,5 @@
+package ru.stqa.pft.addressbook;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
