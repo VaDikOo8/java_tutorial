@@ -15,6 +15,14 @@ public class ContactCreationTests extends TestBase {
                     new ContactDataBirthday("17", "9", "1987"),
                     new ContactDataAnniversary("17", "9", "2007"));
     app.getContactHelper().submitContactCreation();
+    // Вспомогательные методы ContactDataBirthday и ContactDataAnniversary.
+    // 1й атрибут - день. Значения option[]:
+    // 1 - null;
+    // 2 - "-";
+    // 3-33 - "1"-"31".
+    // 2й атрибут - месяц. Значения option[]:
+    // 1 - "-";
+    // 2-13 - "January"-"December".
   }
 
 }

@@ -32,35 +32,13 @@ public class ContactHelper extends HelperBase {
   }
 
   private void fillAnniversary(String aday, String amonth, String ayear) {
-    // День годовщины. Значения option[]:
-    // 1 - null;
-    // 2 - "-";
-    // 3 - "1";
-    // ...
-    // 33 - "31"
     list(3, aday);
-    // Месяц годовщины. Значения option[]:
-    // 1 - "-";
-    // 2 - "January";
-    // ...
-    // 13 - "December"
     list(4, amonth);
     type(By.name("ayear"), ayear);
   }
 
   private void fillBirthday(String bday, String bmonth, String byear) {
-    // День рождения. Значения option[]:
-    // 1 - null;
-    // 2 - "-";
-    // 3 - "1";
-    // ...
-    // 33 - "31"
     list(1, bday);
-    // Месяц рождения. Значения option[]:
-    // 1 - "-";
-    // 2 - "January";
-    // ...
-    // 13 - "December"
     list(2, bmonth);
     type(By.name("byear"), byear);
   }
