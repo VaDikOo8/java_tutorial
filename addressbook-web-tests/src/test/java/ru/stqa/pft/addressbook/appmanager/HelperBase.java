@@ -24,6 +24,12 @@ public class HelperBase {
     wd.findElement(locator).sendKeys(text);
   }
 
+  protected void list(int select, String option) {
+    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[" + select + "]//option[" + option + "]")).isSelected()) {
+      wd.findElement(By.xpath("//div[@id='content']/form/select[" + select + "]//option[" + option + "]")).click();
+    }
+  }
+
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
