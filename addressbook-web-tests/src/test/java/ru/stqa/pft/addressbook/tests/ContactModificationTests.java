@@ -19,6 +19,7 @@ public class ContactModificationTests extends TestBase {
             new ContactDataBirthday("15", "4", "1989"),
             new ContactDataAnniversary("15", "4", "2009"));
     app.getContactHelper().submitContactModification();
+
     // Вспомогательные методы ContactDataBirthday и ContactDataAnniversary.
     // 1й атрибут - день. Значения option[]:
     // 1 - null;

@@ -2,15 +2,16 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * Created by Вадим on 29.10.2016.
  */
 public class HelperBase {
-  protected ChromeDriver wd;
+  WebDriver wd;
 
-  public HelperBase(ChromeDriver wd) {
+  public HelperBase(WebDriver wd) {
     this.wd = wd;
   }
 
@@ -19,9 +20,10 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
+    WebElement element = wd.findElement(locator);
     click(locator);
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
+    element.clear();
+    element.sendKeys(text);
   }
 
   protected void list(int select, String option) {

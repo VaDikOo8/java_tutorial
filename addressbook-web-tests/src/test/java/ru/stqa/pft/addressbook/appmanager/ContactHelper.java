@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.*;
 
 /**
@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.*;
  */
 public class ContactHelper extends HelperBase {
 
-  public ContactHelper(ChromeDriver wd) {
+  public ContactHelper(WebDriver wd) {
     super(wd);
   }
 
@@ -94,5 +94,9 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  public void returnHomePage() {
+    click(By.linkText("home page"));
   }
 }
