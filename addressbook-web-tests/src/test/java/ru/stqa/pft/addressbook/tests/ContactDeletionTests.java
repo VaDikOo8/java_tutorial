@@ -8,9 +8,10 @@ import org.testng.annotations.Test;
 public class ContactDeletionTests extends TestBase {
 
   @Test
-  public void testContactDeletion() {
+  public void testContactDeletion() throws InterruptedException {
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteSelectedContacts();
+    Thread.sleep(1000);
     app.getContactHelper().acceptDeletionContact();
   }
 
