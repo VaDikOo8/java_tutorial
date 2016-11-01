@@ -87,6 +87,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void acceptDeletionContact() {
+    WebDriverWait wait = new WebDriverWait(wd, 1);
     wait.until(ExpectedConditions.alertIsPresent());
     wd.switchTo().alert().accept();
   }
