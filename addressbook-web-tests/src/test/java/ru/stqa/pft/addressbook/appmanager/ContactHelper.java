@@ -2,6 +2,8 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.pft.addressbook.model.*;
 
 /**
@@ -32,14 +34,14 @@ public class ContactHelper extends HelperBase {
   }
 
   private void fillAnniversary(String aday, String amonth, String ayear) {
-    list(3, aday);
-    list(4, amonth);
+    list("aday", aday);
+    list("amonth", amonth);
     type(By.name("ayear"), ayear);
   }
 
   private void fillBirthday(String bday, String bmonth, String byear) {
-    list(1, bday);
-    list(2, bmonth);
+    list("bday", bday);
+    list("bmonth", bmonth);
     type(By.name("byear"), byear);
   }
 
@@ -85,6 +87,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void acceptDeletionContact() {
+    wait.until(ExpectedConditions.alertIsPresent());
     wd.switchTo().alert().accept();
   }
 

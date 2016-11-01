@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by Вадим on 29.10.2016.
@@ -21,15 +22,14 @@ public class HelperBase {
 
   protected void type(By locator, String text) {
     WebElement element = wd.findElement(locator);
-    click(locator);
     element.clear();
     element.sendKeys(text);
   }
 
-  protected void list(int select, String option) {
-    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[" + select + "]//option[" + option + "]")).isSelected()) {
-      wd.findElement(By.xpath("//div[@id='content']/form/select[" + select + "]//option[" + option + "]")).click();
-    }
+  protected void list(String sel, String option) {
+    Select select = new Select(wd.findElement(By.name(sel)));
+    select.getOptions();
+    select.selectByVisibleText(option);
   }
 
   public boolean isAlertPresent() {
