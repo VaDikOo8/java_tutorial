@@ -21,9 +21,11 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
-    WebElement element = wd.findElement(locator);
-    element.clear();
-    element.sendKeys(text);
+    if (text != null) {
+      WebElement element = wd.findElement(locator);
+      element.clear();
+      element.sendKeys(text);
+    }
   }
 
   protected void list(String sel, String option) {
