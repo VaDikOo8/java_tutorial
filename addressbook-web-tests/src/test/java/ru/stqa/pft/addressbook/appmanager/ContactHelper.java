@@ -108,4 +108,11 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  public boolean haveFullContactList() {
+    if (isElementPresent(By.name("entry"))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

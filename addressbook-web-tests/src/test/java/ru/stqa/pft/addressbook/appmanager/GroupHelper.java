@@ -45,4 +45,11 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  public boolean haveFullGroupList() {
+    if (isElementPresent(By.className("group"))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
