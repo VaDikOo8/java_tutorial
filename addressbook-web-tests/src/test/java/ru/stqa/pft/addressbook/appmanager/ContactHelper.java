@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -63,7 +64,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("title"), title);
     type(By.name("company"), company);
     type(By.name("address"), address);
-    list("new_group", group);
+    if (isElementPresent(By.name("new_group"))) {
+      list("new_group", group);
+    }
   }
 
   private void fillFIO(String fname, String mname, String lname, String nickname) {
