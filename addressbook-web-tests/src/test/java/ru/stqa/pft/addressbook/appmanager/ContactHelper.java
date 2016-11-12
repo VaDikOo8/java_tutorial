@@ -1,10 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.*;
 
 /**
@@ -27,7 +27,7 @@ public class ContactHelper extends HelperBase {
                               ContactDataBirthday contactDataBirthday,
                               ContactDataAnniversary contactDataAnniversary) {
     fillFIO(contactDataFIO.getFname(), contactDataFIO.getMname(), contactDataFIO.getLname(), contactDataFIO.getNickname());
-    fillCpmpanyAddrGroup(contactDataCompanyAddrGroup.getTitle(), contactDataCompanyAddrGroup.getCompany(), contactDataCompanyAddrGroup.getAddress(), contactDataCompanyAddrGroup.getGroup());
+    fillCompanyAddrGroup(contactDataCompanyAddrGroup.getTitle(), contactDataCompanyAddrGroup.getCompany(), contactDataCompanyAddrGroup.getAddress(), contactDataCompanyAddrGroup.getGroup(),contactDataCompanyAddrGroup.creation);
     fillPhoneNumbers(contactDataPhoneNumbers.getHome_pnmbr(), contactDataPhoneNumbers.getMobile_pnmbr(), contactDataPhoneNumbers.getWork_pnmbr(), contactDataPhoneNumbers.getFax_nmbr());
     fillEmailHomepage(contactDataEmailHomepage.getEmail1(), contactDataEmailHomepage.getEmail2(), contactDataEmailHomepage.getEmail3(), contactDataEmailHomepage.getHomepage());
     fillBirthday(contactDataBirthday.getBday(), contactDataBirthday.getBmonth(), contactDataBirthday.getByear());
@@ -60,12 +60,14 @@ public class ContactHelper extends HelperBase {
     type(By.name("fax"), fax_nmbr);
   }
 
-  private void fillCpmpanyAddrGroup(String title, String company, String address, String group) {
+  private void fillCompanyAddrGroup(String title, String company, String address, String group, boolean creation) {
     type(By.name("title"), title);
     type(By.name("company"), company);
     type(By.name("address"), address);
-    if (isElementPresent(By.name("new_group"))) {
+    if (creation) {
       list("new_group", group);
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
 
