@@ -18,6 +18,7 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
+
     if (text != null) {
       WebElement element = wd.findElement(locator);
       String existingText = element.getAttribute("value");
@@ -26,6 +27,7 @@ public class HelperBase {
         element.sendKeys(text);
       }
     }
+
   }
 
   protected void list(String sel, String option) {

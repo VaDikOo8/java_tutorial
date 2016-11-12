@@ -64,11 +64,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("title"), title);
     type(By.name("company"), company);
     type(By.name("address"), address);
+
     if (creation) {
       list("new_group", group);
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+
   }
 
   private void fillFIO(String fname, String mname, String lname, String nickname) {
@@ -106,7 +108,4 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void returnHomePage() {
-    click(By.linkText("home page"));
-  }
 }

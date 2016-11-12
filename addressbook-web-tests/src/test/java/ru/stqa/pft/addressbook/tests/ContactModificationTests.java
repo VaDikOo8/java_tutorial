@@ -12,9 +12,9 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() {
     app.getContactHelper().selectContact();
     app.getContactHelper().initContactModification();
-    app.getContactHelper().fillContactForm(new ContactDataFIO("Ivan", "Ivanovich", "Ivanov", "ivanov1989"),
-            new ContactDataCompanyAddrGroup("test5", "home", "Moscow, Russia", null, false),
-            new ContactDataPhoneNumbers("+7 (841) 111-11-11", "+7 (937) 555-44-11", "+7 (495) 333-33-33", "41243"),
+    app.getContactHelper().fillContactForm(new ContactDataFIO("Petr", "Ivanovich", "Ivanov", null),
+            new ContactDataCompanyAddrGroup(null, "home", "Moscow, Russia", null, false),
+            new ContactDataPhoneNumbers(null, "+7 (937) 555-44-11", "+7 (495) 333-33-33", null),
             new ContactDataEmailHomepage("mail1@mail.ru", "mail2@rambler.ru", "mail3@nxt.ru", "http://vk.com/ivanov_ivan"),
             new ContactDataBirthday("15", "April", "1989"),
             new ContactDataAnniversary("15", "April", "2009"));
