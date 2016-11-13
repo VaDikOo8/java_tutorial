@@ -53,17 +53,33 @@ public class GroupHelper extends HelperBase {
     }
   }
 
-  public void createGroup() {
-    NavigationHelper.gotoGroupPage();
+  public void returnToGroupPage() {
+    if (isElementPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            && isElementPresent(By.name("new"))) {
+      return;
+    }
+    click(By.linkText("group page"));
+  }
+
+  public void createGroup(GroupData groupData) {
     initGroupCreation();
-    fillGroupForm(new GroupData("TEST_GROUP", "group_header_test", "group_footer_test"));
+    fillGroupForm(groupData);
     submitGroupCreation();
-    NavigationHelper.returnToGroupPage();
+    returnToGroupPage();
   }
 
   public void deleteGroup() {
     selectGroup();
     deleteSelectedGroups();
-    NavigationHelper.returnToGroupPage();
+    returnToGroupPage();
+  }
+
+  public void editGroup(GroupData groupData) {
+    selectGroup();
+    initGroupModification();
+    fillGroupForm(groupData);
+    submitGroupModification();
+    returnToGroupPage();
   }
 }

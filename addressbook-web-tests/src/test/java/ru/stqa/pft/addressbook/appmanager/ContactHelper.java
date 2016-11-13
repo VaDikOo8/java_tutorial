@@ -108,6 +108,13 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  public void returnHomePage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home page"));
+  }
+
   public boolean haveFullContactList() {
     if (isElementPresent(By.name("entry"))) {
       return true;
@@ -116,21 +123,35 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void createContact() {
+  public void createContact(ContactDataFIO contactDataFIO,
+                            ContactDataCompanyAddrGroup contactDataCompanyAddrGroup,
+                            ContactDataPhoneNumbers contactDataPhoneNumbers,
+                            ContactDataEmailHomepage contactDataEmailHomepage,
+                            ContactDataBirthday contactDataBirthday,
+                            ContactDataAnniversary contactDataAnniversary) {
     initContactCreation();
-    fillContactForm(new ContactDataFIO("Name", "Patronymic", "Surname", "nickname1234"),
-            new ContactDataCompanyAddrGroup("test1", "TEST2", "test3", "[none]", true),
-            new ContactDataPhoneNumbers("+7 (999) 123-45-67", null, null, null),
-            new ContactDataEmailHomepage("mail1@mail.ru", "mail2@rambler.ru", "mail3@nxt.ru", null),
-            new ContactDataBirthday("1", "January", "1990"),
-            new ContactDataAnniversary("1", "January", "2010"));
+    fillContactForm(contactDataFIO, contactDataCompanyAddrGroup, contactDataPhoneNumbers,
+            contactDataEmailHomepage, contactDataBirthday, contactDataAnniversary);
     submitContactCreation();
-    NavigationHelper.returnHomePage();
+    returnHomePage();
   }
 
   public void deleteContract() {
     selectContact();
     deleteSelectedContacts();
     acceptDeletionContact();
+  }
+
+  public void editContact(ContactDataFIO contactDataFIO,
+                          ContactDataCompanyAddrGroup contactDataCompanyAddrGroup,
+                          ContactDataPhoneNumbers contactDataPhoneNumbers,
+                          ContactDataEmailHomepage contactDataEmailHomepage,
+                          ContactDataBirthday contactDataBirthday,
+                          ContactDataAnniversary contactDataAnniversary) {
+    selectContact();
+    initContactModification();
+    fillContactForm(contactDataFIO, contactDataCompanyAddrGroup, contactDataPhoneNumbers,
+            contactDataEmailHomepage, contactDataBirthday, contactDataAnniversary);
+    submitContactModification();
   }
 }

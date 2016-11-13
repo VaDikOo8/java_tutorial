@@ -12,27 +12,12 @@ public class NavigationHelper extends HelperBase {
     super(wd);
   }
 
-  public static void gotoGroupPage() {
+  public void gotoGroupPage() {
     if (isElementPresent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElementPresent(By.name("new"))) {
       return;
     }
     click(By.linkText("groups"));
-  }
-
-  public static void returnToGroupPage() {
-    if (isElementPresent(By.tagName("h1"))
-            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
-            && isElementPresent(By.name("new"))) {
-      return;
-    }
-    click(By.linkText("group page"));
-  }
-  public static void returnHomePage() {
-    if (isElementPresent(By.id("maintable"))) {
-      return;
-    }
-    click(By.linkText("home page"));
   }
 }
