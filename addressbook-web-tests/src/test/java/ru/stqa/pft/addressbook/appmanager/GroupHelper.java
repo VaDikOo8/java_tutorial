@@ -52,4 +52,18 @@ public class GroupHelper extends HelperBase {
       return false;
     }
   }
+
+  public void createGroup() {
+    NavigationHelper.gotoGroupPage();
+    initGroupCreation();
+    fillGroupForm(new GroupData("TEST_GROUP", "group_header_test", "group_footer_test"));
+    submitGroupCreation();
+    NavigationHelper.returnToGroupPage();
+  }
+
+  public void deleteGroup() {
+    selectGroup();
+    deleteSelectedGroups();
+    NavigationHelper.returnToGroupPage();
+  }
 }

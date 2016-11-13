@@ -7,13 +7,13 @@ import org.openqa.selenium.support.ui.Select;
  * Created by Вадим on 29.10.2016.
  */
 public class HelperBase {
-  WebDriver wd;
+  static WebDriver wd;
 
   public HelperBase(WebDriver wd) {
     this.wd = wd;
   }
 
-  protected void click(By locator) {
+  protected static void click(By locator) {
     wd.findElement(locator).click();
   }
 
@@ -45,7 +45,7 @@ public class HelperBase {
     }
   }
 
-  protected boolean isElementPresent(By locator) {
+  public static boolean isElementPresent(By locator) {
     try {
       wd.findElement(locator);
       return true;

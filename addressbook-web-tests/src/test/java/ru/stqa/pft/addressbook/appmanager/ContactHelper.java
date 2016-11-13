@@ -115,4 +115,22 @@ public class ContactHelper extends HelperBase {
       return false;
     }
   }
+
+  public void createContact() {
+    initContactCreation();
+    fillContactForm(new ContactDataFIO("Name", "Patronymic", "Surname", "nickname1234"),
+            new ContactDataCompanyAddrGroup("test1", "TEST2", "test3", "[none]", true),
+            new ContactDataPhoneNumbers("+7 (999) 123-45-67", null, null, null),
+            new ContactDataEmailHomepage("mail1@mail.ru", "mail2@rambler.ru", "mail3@nxt.ru", null),
+            new ContactDataBirthday("1", "January", "1990"),
+            new ContactDataAnniversary("1", "January", "2010"));
+    submitContactCreation();
+    NavigationHelper.returnHomePage();
+  }
+
+  public void deleteContract() {
+    selectContact();
+    deleteSelectedContacts();
+    acceptDeletionContact();
+  }
 }
