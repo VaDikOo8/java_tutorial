@@ -20,18 +20,13 @@ public class ContactHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void fillContactForm(ContactDataFIO contactDataFIO,
-                              ContactDataCompanyAddrGroup contactDataCompanyAddrGroup,
-                              ContactDataPhoneNumbers contactDataPhoneNumbers,
-                              ContactDataEmailHomepage contactDataEmailHomepage,
-                              ContactDataBirthday contactDataBirthday,
-                              ContactDataAnniversary contactDataAnniversary) {
-    fillFIO(contactDataFIO.getFname(), contactDataFIO.getMname(), contactDataFIO.getLname(), contactDataFIO.getNickname());
-    fillCompanyAddrGroup(contactDataCompanyAddrGroup.getTitle(), contactDataCompanyAddrGroup.getCompany(), contactDataCompanyAddrGroup.getAddress(), contactDataCompanyAddrGroup.getGroup(),contactDataCompanyAddrGroup.creation);
-    fillPhoneNumbers(contactDataPhoneNumbers.getHome_pnmbr(), contactDataPhoneNumbers.getMobile_pnmbr(), contactDataPhoneNumbers.getWork_pnmbr(), contactDataPhoneNumbers.getFax_nmbr());
-    fillEmailHomepage(contactDataEmailHomepage.getEmail1(), contactDataEmailHomepage.getEmail2(), contactDataEmailHomepage.getEmail3(), contactDataEmailHomepage.getHomepage());
-    fillBirthday(contactDataBirthday.getBday(), contactDataBirthday.getBmonth(), contactDataBirthday.getByear());
-    fillAnniversary(contactDataAnniversary.getAday(), contactDataAnniversary.getAmonth(), contactDataAnniversary.getAyear());
+  public void fillContactForm(ContactData contactData) {
+    fillFIO(contactData.getFname(), contactData.getMname(), contactData.getLname(), contactData.getNickname());
+    fillCompanyAddrGroup(contactData.getTitle(), contactData.getCompany(), contactData.getAddress(), contactData.getGroup(),contactData.creation);
+    fillPhoneNumbers(contactData.getHome_pnmbr(), contactData.getMobile_pnmbr(), contactData.getWork_pnmbr(), contactData.getFax_nmbr());
+    fillEmailHomepage(contactData.getEmail1(), contactData.getEmail2(), contactData.getEmail3(), contactData.getHomepage());
+    fillBirthday(contactData.getBday(), contactData.getBmonth(), contactData.getByear());
+    fillAnniversary(contactData.getAday(), contactData.getAmonth(), contactData.getAyear());
   }
 
   private void fillAnniversary(String aday, String amonth, String ayear) {
@@ -123,15 +118,9 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void createContact(ContactDataFIO contactDataFIO,
-                            ContactDataCompanyAddrGroup contactDataCompanyAddrGroup,
-                            ContactDataPhoneNumbers contactDataPhoneNumbers,
-                            ContactDataEmailHomepage contactDataEmailHomepage,
-                            ContactDataBirthday contactDataBirthday,
-                            ContactDataAnniversary contactDataAnniversary) {
+  public void createContact(ContactData contactData) {
     initContactCreation();
-    fillContactForm(contactDataFIO, contactDataCompanyAddrGroup, contactDataPhoneNumbers,
-            contactDataEmailHomepage, contactDataBirthday, contactDataAnniversary);
+    fillContactForm(contactData);
     submitContactCreation();
     returnHomePage();
   }
@@ -142,16 +131,10 @@ public class ContactHelper extends HelperBase {
     acceptDeletionContact();
   }
 
-  public void editContact(ContactDataFIO contactDataFIO,
-                          ContactDataCompanyAddrGroup contactDataCompanyAddrGroup,
-                          ContactDataPhoneNumbers contactDataPhoneNumbers,
-                          ContactDataEmailHomepage contactDataEmailHomepage,
-                          ContactDataBirthday contactDataBirthday,
-                          ContactDataAnniversary contactDataAnniversary) {
+  public void editContact(ContactData contactData) {
     selectContact();
     initContactModification();
-    fillContactForm(contactDataFIO, contactDataCompanyAddrGroup, contactDataPhoneNumbers,
-            contactDataEmailHomepage, contactDataBirthday, contactDataAnniversary);
+    fillContactForm(contactData);
     submitContactModification();
   }
 }
