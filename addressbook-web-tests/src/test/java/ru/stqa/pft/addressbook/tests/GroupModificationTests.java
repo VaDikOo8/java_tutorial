@@ -16,7 +16,7 @@ public class GroupModificationTests extends TestBase {
     if (app.getGroupHelper().haveFullGroupList() == false) {
       app.getGroupHelper().createGroup(new GroupData("GroupTest", "group_header_test", "group_footer_test"));
     }
-    app.getGroupHelper().editGroup(new GroupData("Group3", "group_header3", null));
+    app.getGroupHelper().editGroup(before - 1, new GroupData("Group3", "group_header3", null));
     int after = app.getGroupHelper().getGroupCount();
     Assert.assertEquals(after, before);
   }
