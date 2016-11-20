@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class GroupData {
+
   private int id;
   private final String name;
   private final String header;
@@ -36,6 +37,10 @@ public class GroupData {
     return id;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -61,9 +66,5 @@ public class GroupData {
             "id=" + id +
             ", name='" + name + '\'' +
             '}';
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 }

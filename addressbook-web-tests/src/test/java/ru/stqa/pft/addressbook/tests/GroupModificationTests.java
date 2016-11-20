@@ -19,6 +19,7 @@ public class GroupModificationTests extends TestBase {
     if (app.getGroupHelper().haveFullGroupList() == false) {
       app.getGroupHelper().createGroup(new GroupData("GroupTest", "group_header_test", "group_footer_test"));
     }
+
     List<GroupData> before = app.getGroupHelper().getGroupList();
     GroupData group = new GroupData(before.get(before.size() - 1).getId(), "Group3", "group_header3", null);
     app.getGroupHelper().editGroup(before.size() - 1, group);
@@ -31,5 +32,6 @@ public class GroupModificationTests extends TestBase {
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before, after);
+
   }
 }
