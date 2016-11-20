@@ -25,58 +25,58 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactForm(ContactData contactData) {
-    fillFIO(contactData.getFname(), contactData.getMname(), contactData.getLname(), contactData.getNickname());
-    fillCompanyAddrGroup(contactData.getTitle(), contactData.getCompany(), contactData.getAddress(), contactData.getGroup(), contactData.creation);
-    fillPhoneNumbers(contactData.getHome_pnmbr(), contactData.getMobile_pnmbr(), contactData.getWork_pnmbr(), contactData.getFax_nmbr());
-    fillEmailHomepage(contactData.getEmail1(), contactData.getEmail2(), contactData.getEmail3(), contactData.getHomepage());
-    fillBirthday(contactData.getBday(), contactData.getBmonth(), contactData.getByear());
-    fillAnniversary(contactData.getAday(), contactData.getAmonth(), contactData.getAyear());
+    fillFIO(contactData);
+    fillCompanyAddrGroup(contactData, contactData.creation);
+    fillPhoneNumbers(contactData);
+    fillEmailHomepage(contactData);
+    fillBirthday(contactData);
+    fillAnniversary(contactData);
   }
 
-  private void fillAnniversary(String aday, String amonth, String ayear) {
-    list("aday", aday);
-    list("amonth", amonth);
-    type(By.name("ayear"), ayear);
+  private void fillAnniversary(ContactData contactData) {
+    list("aday", contactData.getAday());
+    list("amonth", contactData.getAmonth());
+    type(By.name("ayear"), contactData.getAyear());
   }
 
-  private void fillBirthday(String bday, String bmonth, String byear) {
-    list("bday", bday);
-    list("bmonth", bmonth);
-    type(By.name("byear"), byear);
+  private void fillBirthday(ContactData contactData) {
+    list("bday", contactData.getBday());
+    list("bmonth", contactData.getBmonth());
+    type(By.name("byear"), contactData.getByear());
   }
 
-  private void fillEmailHomepage(String email1, String email2, String email3, String homepage) {
-    type(By.name("email"), email1);
-    type(By.name("email2"), email2);
-    type(By.name("email3"), email3);
-    type(By.name("homepage"), homepage);
+  private void fillEmailHomepage(ContactData contactData) {
+    type(By.name("email"), contactData.getEmail1());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
+    type(By.name("homepage"), contactData.getHomepage());
   }
 
-  private void fillPhoneNumbers(String home_pnmbr, String mobile_pnmbr, String work_pnmbr, String fax_nmbr) {
-    type(By.name("home"), home_pnmbr);
-    type(By.name("mobile"), mobile_pnmbr);
-    type(By.name("work"), work_pnmbr);
-    type(By.name("fax"), fax_nmbr);
+  private void fillPhoneNumbers(ContactData contactData) {
+    type(By.name("home"), contactData.getHome_pnmbr());
+    type(By.name("mobile"), contactData.getMobile_pnmbr());
+    type(By.name("work"), contactData.getWork_pnmbr());
+    type(By.name("fax"), contactData.getFax_nmbr());
   }
 
-  private void fillCompanyAddrGroup(String title, String company, String address, String group, boolean creation) {
-    type(By.name("title"), title);
-    type(By.name("company"), company);
-    type(By.name("address"), address);
+  private void fillCompanyAddrGroup(ContactData contactData, boolean creation) {
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompany());
+    type(By.name("address"), contactData.getAddress());
 
     if (creation) {
-      list("new_group", group);
+      list("new_group", contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
 
   }
 
-  private void fillFIO(String fname, String mname, String lname, String nickname) {
-    type(By.name("firstname"), fname);
-    type(By.name("middlename"), mname);
-    type(By.name("lastname"), lname);
-    type(By.name("nickname"), nickname);
+  private void fillFIO(ContactData contactData) {
+    type(By.name("firstname"), contactData.getFname());
+    type(By.name("middlename"), contactData.getMname());
+    type(By.name("lastname"), contactData.getLname());
+    type(By.name("nickname"), contactData.getNickname());
   }
 
   public void initContactCreation() {
