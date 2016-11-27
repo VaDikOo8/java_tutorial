@@ -3,48 +3,50 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() {
-    List<ContactData> before = app.getContactHelper().getContactList();
-    ContactData contact = new ContactData("Iliya", "Petrovich", "Ivanchuk", "ivan4uk89",
-            "test1", "HOME", "Penza, Russia", "[none]", true,
-            "+7 (841) 222-22-22", "+7 (927) 333-22-11", "+7 (841) 111-11-11", "14567",
-            "mail1@mail.ru", "mail2@rambler.ru", "mail3@nxt.ru", "http://vk.com/ivanchuk_iliya",
-            "19", "May", "1987",
-            "19", "May", "2007");
-    app.getContactHelper().createContact(contact);
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    Contacts before = app.contact().all();
+    ContactData contact = new ContactData()
+            .withName("Ivan").withPatronymic("Petrovich").withSurname("Sidorov").withNickname("sidorov81")
+            .withTitle("title1").withCompany("home").withAddress("St. Peterburg, Russia").withCreationFlag(true)
+            .withGroup("[none]")
+            .withHomePnmbr("+7 (495) 333-45-67").withMobilePnmbr("+7 (937) 111-44-11").withWorkPnmbr("+7 (495) 333-22-11")
+            .withEmail1("mail1@mail.ru").withEmail2("mail2@rambler.ru").withEmail3("mail3@nxt.ru")
+            .withHomepage("http://vk.com/sidorov_ivan")
+            .withBday("1").withBmonth("January").withByear("1990")
+            .withAday("1").withAmonth("January").withAyear("2010");
+    app.contact().create(contact);
+    Contacts after = app.contact().all();
+    assertThat(after.size(), equalTo(before.size() + 1));
 
-    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-    before.add(contact);
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+    assertThat(after, equalTo(before
+            .withAdded(contact.withId(after.stream().mapToInt((c) -> (c.getId())).max().getAsInt()))));
   }
 
   @Test (enabled = false)
   //а-ля генератор тестовых данных
   public void testContactsCreation() {
-    int before = app.getContactHelper().getContactCount();
+    int before = app.contact().getContactCount();
     int n = before;
     for (int i = 1; i < 10; i++) {
-      app.getContactHelper().createContact(new ContactData("Iliya", "Petrovich", "Ivanchuk", "ivan4uk89",
-              "test1", "HOME", "Penza, Russia", "[none]", true,
-              "+7 (841) 222-22-22", "+7 (927) 333-22-11", "+7 (841) 111-11-11", "14567",
-              "mail1@mail.ru", "mail2@rambler.ru", "mail3@nxt.ru", "http://vk.com/ivanchuk_iliya",
-              "19", "May", "1987",
-              "19", "May", "2007"));
+      app.contact().create(new ContactData()
+              .withName("Petr").withPatronymic("Petrovich").withSurname("Ivanov").withNickname("ppivanov81")
+              .withTitle("title1").withCompany("home").withAddress("St. Peterburg, Russia").withCreationFlag(false)
+              .withHomePnmbr("+7 (495) 333-45-67").withMobilePnmbr("+7 (937) 111-44-11").withWorkPnmbr("+7 (495) 333-22-11")
+              .withEmail1("mail1@mail.ru").withEmail2("mail2@rambler.ru").withEmail3("mail3@nxt.ru")
+              .withHomepage("http://vk.com/ivanov_petr")
+              .withBday("1").withBmonth("January").withByear("1990")
+              .withAday("1").withAmonth("January").withAyear("2010"));
       n = n + 1;
     }
-    int after = app.getContactHelper().getContactCount();
+    int after = app.contact().getContactCount();
     Assert.assertEquals(after, n);
   }
 }

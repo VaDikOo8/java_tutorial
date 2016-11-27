@@ -1,122 +1,33 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String fname;
-  private final String mname;
-  private final String lname;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String group;
+  private int id = Integer.MAX_VALUE;
+  private String fname;
+  private String mname;
+  private String lname;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String group;
   public boolean creation;
-  private final String home_pnmbr;
-  private final String mobile_pnmbr;
-  private final String work_pnmbr;
-  private final String fax_nmbr;
-  private final String email1;
-  private final String email2;
-  private final String email3;
-  private final String homepage;
-  private final String bday;
-  private final String bmonth;
-  private final String byear;
-  private final String aday;
-  private final String amonth;
-  private final String ayear;
+  private String home_pnmbr;
+  private String mobile_pnmbr;
+  private String work_pnmbr;
+  private String fax_nmbr;
+  private String email1;
+  private String email2;
+  private String email3;
+  private String homepage;
+  private String bday;
+  private String bmonth;
+  private String byear;
+  private String aday;
+  private String amonth;
+  private String ayear;
 
-  public ContactData(String fname, String mname, String lname, String nickname,
-                     String title, String company, String address, String group, boolean creation,
-                     String home_pnmbr, String mobile_pnmbr, String work_pnmbr, String fax_nmbr,
-                     String email1, String email2, String email3, String homepage,
-                     String bday, String bmonth, String byear,
-                     String aday, String amonth, String ayear) {
-    this.id = 0;
-    this.fname = fname;
-    this.mname = mname;
-    this.lname = lname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.group = group;
-    this.creation = creation;
-    this.home_pnmbr = home_pnmbr;
-    this.mobile_pnmbr = mobile_pnmbr;
-    this.work_pnmbr = work_pnmbr;
-    this.fax_nmbr = fax_nmbr;
-    this.email1 = email1;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homepage = homepage;
-    this.bday = bday;
-    this.bmonth = bmonth;
-    this.byear = byear;
-    this.aday = aday;
-    this.amonth = amonth;
-    this.ayear = ayear;
-  }
-
-  public ContactData(int id, String fname, String mname, String lname, String nickname,
-                     String title, String company, String address, String group, boolean creation,
-                     String home_pnmbr, String mobile_pnmbr, String work_pnmbr, String fax_nmbr,
-                     String email1, String email2, String email3, String homepage,
-                     String bday, String bmonth, String byear,
-                     String aday, String amonth, String ayear) {
-    this.id = id;
-    this.fname = fname;
-    this.mname = mname;
-    this.lname = lname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.group = group;
-    this.creation = creation;
-    this.home_pnmbr = home_pnmbr;
-    this.mobile_pnmbr = mobile_pnmbr;
-    this.work_pnmbr = work_pnmbr;
-    this.fax_nmbr = fax_nmbr;
-    this.email1 = email1;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homepage = homepage;
-    this.bday = bday;
-    this.bmonth = bmonth;
-    this.byear = byear;
-    this.aday = aday;
-    this.amonth = amonth;
-    this.ayear = ayear;
-  }
-
-  public ContactData(int id, String fname, String lname, String address,
-                     String home_pnmbr, String mobile_pnmbr, String work_pnmbr,
-                     String email1, String email2, String email3) {
-    this.id = id;
-    this.fname = fname;
-    this.mname = null;
-    this.lname = lname;
-    this.nickname = null;
-    this.title = null;
-    this.company = null;
-    this.address = address;
-    this.group = null;
-    this.creation = false;
-    this.home_pnmbr = home_pnmbr;
-    this.mobile_pnmbr = mobile_pnmbr;
-    this.work_pnmbr = work_pnmbr;
-    this.fax_nmbr = null;
-    this.email1 = email1;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homepage = null;
-    this.bday = null;
-    this.bmonth = null;
-    this.byear = null;
-    this.aday = null;
-    this.amonth = null;
-    this.ayear = null;
+  public int getId() {
+    return id;
   }
 
   public String getFname() {
@@ -207,14 +118,124 @@ public class ContactData {
     return ayear;
   }
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", fname='" + fname + '\'' +
-            ", lname='" + lname + '\'' +
-            ", address='" + address + '\'' +
-            '}';
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withName(String fname) {
+    this.fname = fname;
+    return this;
+  }
+
+  public ContactData withPatronymic(String mname) {
+    this.mname = mname;
+    return this;
+  }
+
+  public ContactData withSurname(String lname) {
+    this.lname = lname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withCreationFlag(boolean creation) {
+    this.creation = creation;
+    return this;
+  }
+
+  public ContactData withHomePnmbr(String home_pnmbr) {
+    this.home_pnmbr = home_pnmbr;
+    return this;
+  }
+
+  public ContactData withMobilePnmbr(String mobile_pnmbr) {
+    this.mobile_pnmbr = mobile_pnmbr;
+    return this;
+  }
+
+  public ContactData withWorkPnmbr(String work_pnmbr) {
+    this.work_pnmbr = work_pnmbr;
+    return this;
+  }
+
+  public ContactData withFaxNmbr(String fax_nmbr) {
+    this.fax_nmbr = fax_nmbr;
+    return this;
+  }
+
+  public ContactData withEmail1(String email1) {
+    this.email1 = email1;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withHomepage(String homepage) {
+    this.homepage = homepage;
+    return this;
+  }
+
+  public ContactData withBday(String bday) {
+    this.bday = bday;
+    return this;
+  }
+
+  public ContactData withBmonth(String bmonth) {
+    this.bmonth = bmonth;
+    return this;
+  }
+
+  public ContactData withByear(String byear) {
+    this.byear = byear;
+    return this;
+  }
+
+  public ContactData withAday(String aday) {
+    this.aday = aday;
+    return this;
+  }
+
+  public ContactData withAmonth(String amonth) {
+    this.amonth = amonth;
+    return this;
+  }
+
+  public ContactData withAyear(String ayear) {
+    this.ayear = ayear;
+    return this;
   }
 
   @Override
@@ -228,7 +249,6 @@ public class ContactData {
     if (fname != null ? !fname.equals(that.fname) : that.fname != null) return false;
     if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
     return address != null ? address.equals(that.address) : that.address == null;
-
   }
 
   @Override
@@ -240,11 +260,13 @@ public class ContactData {
     return result;
   }
 
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", fname='" + fname + '\'' +
+            ", lname='" + lname + '\'' +
+            ", address='" + address + '\'' +
+            '}';
   }
 }
