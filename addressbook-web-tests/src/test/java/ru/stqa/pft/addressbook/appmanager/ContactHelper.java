@@ -168,10 +168,10 @@ public class ContactHelper extends HelperBase {
       String lname = td.get(1).getText();
       String fname = td.get(2).getText();
       String address = td.get(3).getText();
-      String[] phones = td.get(5).getText().split("\n");
+      String allPhones = td.get(5).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       contacts.add(new ContactData().withId(id).withName(fname).withSurname(lname).withAddress(address)
-              .withHomePnmbr(phones[0]).withMobilePnmbr(phones[1]).withWorkPnmbr(phones[2]));
+              .withAllPhones(allPhones));
     }
     return contacts;
   }

@@ -15,6 +15,7 @@ public class ContactData {
   private String mobile_pnmbr;
   private String work_pnmbr;
   private String fax_nmbr;
+  private String allPhones;
   private String email1;
   private String email2;
   private String email3;
@@ -76,6 +77,10 @@ public class ContactData {
 
   public String getFax_nmbr() {
     return fax_nmbr;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
   }
 
   public String getEmail1() {
@@ -185,6 +190,11 @@ public class ContactData {
 
   public ContactData withFaxNmbr(String fax_nmbr) {
     this.fax_nmbr = fax_nmbr;
+    return this;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
     return this;
   }
 
