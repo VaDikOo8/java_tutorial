@@ -102,6 +102,12 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
+  public void initContactModificationById(int id) {
+    //click(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id)));
+    //click(By.xpath(String.format("//tr[./input[@value='%s']]/td[8]/a", id)));
+    click(By.cssSelector(String.format("a[href='edit.php?id=%s']", id)));
+  }
+
   public void submitContactModification() {
     click(By.name("update"));
   }
@@ -162,9 +168,23 @@ public class ContactHelper extends HelperBase {
       String lname = td.get(1).getText();
       String fname = td.get(2).getText();
       String address = td.get(3).getText();
+      String[] phones = td.get(5).getText().split("\n");
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new ContactData().withId(id).withName(fname).withSurname(lname).withAddress(address));
+      contacts.add(new ContactData().withId(id).withName(fname).withSurname(lname).withAddress(address)
+              .withHomePnmbr(phones[0]).withMobilePnmbr(phones[1]).withWorkPnmbr(phones[2]));
     }
     return contacts;
+  }
+
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String fname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String homePnmbr = wd.findElement(By.name("home")).getAttribute("value");
+    String mobilePnmbr = wd.findElement(By.name("mobile")).getAttribute("value");
+    String workPnmbr = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withName(fname).withSurname(lname)
+            .withHomePnmbr(homePnmbr).withMobilePnmbr(mobilePnmbr).withWorkPnmbr(workPnmbr);
   }
 }
