@@ -8,9 +8,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Вадим on 29.10.2016.
@@ -108,6 +110,10 @@ public class ContactHelper extends HelperBase {
     click(By.cssSelector(String.format("a[href='edit.php?id=%s']", id)));
   }
 
+  private void initContactDetailsById(int id) {
+    click(By.cssSelector(String.format("a[href='view.php?id=%s']", id)));
+  }
+
   public void submitContactModification() {
     click(By.name("update"));
   }
@@ -182,16 +188,30 @@ public class ContactHelper extends HelperBase {
     String fname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lname = wd.findElement(By.name("lastname")).getAttribute("value");
     String address = wd.findElement(By.name("address")).getText();
-    String email1 = wd.findElement(By.name("email")).getAttribute("value");
-    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
-    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     String homePnmbr = wd.findElement(By.name("home")).getAttribute("value");
     String mobilePnmbr = wd.findElement(By.name("mobile")).getAttribute("value");
     String workPnmbr = wd.findElement(By.name("work")).getAttribute("value");
+    String email1 = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withName(fname).withSurname(lname)
             .withAddress(address)
             .withEmail1(email1).withEmail2(email2).withEmail3(email3)
             .withHomePnmbr(homePnmbr).withMobilePnmbr(mobilePnmbr).withWorkPnmbr(workPnmbr);
   }
+
+  public ContactData infoFromDetailsForm(ContactData contact) {
+    initContactDetailsById(contact.getId());
+    String[] fullName = wd.findElement(By.xpath(String.format("//div[@id='content']//b"))).getText().split("[ ]");
+    String[] fullInfo = wd.findElement(By.xpath(String.format("//div[@id='content']"))).getText().split("\n");
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withName(fullName[0]).withSurname(fullName[1])
+            .withAddress(fullInfo[1])
+            .withEmail1(fullInfo[7]).withEmail2(fullInfo[8]).withEmail3(fullInfo[9])
+            .withHomePnmbr(fullInfo[3].substring(3))
+            .withMobilePnmbr(fullInfo[4].substring(3))
+            .withWorkPnmbr(fullInfo[5].substring(3));
+  }
+  
 }
