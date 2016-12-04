@@ -19,6 +19,7 @@ public class ContactData {
   private String email1;
   private String email2;
   private String email3;
+  private String allEmails;
   private String homepage;
   private String bday;
   private String bmonth;
@@ -81,6 +82,10 @@ public class ContactData {
 
   public String getAllPhones() {
     return allPhones;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   public String getEmail1() {
@@ -213,6 +218,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
   public ContactData withHomepage(String homepage) {
     this.homepage = homepage;
     return this;
@@ -249,6 +259,22 @@ public class ContactData {
   }
 
   @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", fname='" + fname + '\'' +
+            ", lname='" + lname + '\'' +
+            ", address='" + address + '\'' +
+            ", home_pnmbr='" + home_pnmbr + '\'' +
+            ", mobile_pnmbr='" + mobile_pnmbr + '\'' +
+            ", work_pnmbr='" + work_pnmbr + '\'' +
+            ", email1='" + email1 + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -258,7 +284,13 @@ public class ContactData {
     if (id != that.id) return false;
     if (fname != null ? !fname.equals(that.fname) : that.fname != null) return false;
     if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
-    return address != null ? address.equals(that.address) : that.address == null;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (home_pnmbr != null ? !home_pnmbr.equals(that.home_pnmbr) : that.home_pnmbr != null) return false;
+    if (mobile_pnmbr != null ? !mobile_pnmbr.equals(that.mobile_pnmbr) : that.mobile_pnmbr != null) return false;
+    if (work_pnmbr != null ? !work_pnmbr.equals(that.work_pnmbr) : that.work_pnmbr != null) return false;
+    if (email1 != null ? !email1.equals(that.email1) : that.email1 != null) return false;
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+    return email3 != null ? email3.equals(that.email3) : that.email3 == null;
   }
 
   @Override
@@ -267,16 +299,12 @@ public class ContactData {
     result = 31 * result + (fname != null ? fname.hashCode() : 0);
     result = 31 * result + (lname != null ? lname.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (home_pnmbr != null ? home_pnmbr.hashCode() : 0);
+    result = 31 * result + (mobile_pnmbr != null ? mobile_pnmbr.hashCode() : 0);
+    result = 31 * result + (work_pnmbr != null ? work_pnmbr.hashCode() : 0);
+    result = 31 * result + (email1 != null ? email1.hashCode() : 0);
+    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+    result = 31 * result + (email3 != null ? email3.hashCode() : 0);
     return result;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", fname='" + fname + '\'' +
-            ", lname='" + lname + '\'' +
-            ", address='" + address + '\'' +
-            '}';
   }
 }
