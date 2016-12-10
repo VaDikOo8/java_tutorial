@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+
 /**
  * Created by Вадим on 29.10.2016.
  */
@@ -28,6 +30,12 @@ public class HelperBase {
       }
     }
 
+  }
+
+  protected void attach(By locator, File file) {
+    if (file != null) {
+      wd.findElement(locator).sendKeys(file.getAbsolutePath());
+    }
   }
 
   protected void list(String sel, String option) {

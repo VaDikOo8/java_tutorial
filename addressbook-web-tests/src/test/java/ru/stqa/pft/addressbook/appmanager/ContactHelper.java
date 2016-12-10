@@ -29,11 +29,16 @@ public class ContactHelper extends HelperBase {
 
   public void fillContactForm(ContactData contactData) {
     fillFIO(contactData);
+    fillAttach(contactData);
     fillCompanyAddrGroup(contactData);
     fillPhoneNumbers(contactData);
     fillEmailHomepage(contactData);
     fillBirthday(contactData);
     fillAnniversary(contactData);
+  }
+
+  private void fillAttach(ContactData contactData) {
+    attach(By.name("photo"), contactData.getPhoto());
   }
 
   private void fillAnniversary(ContactData contactData) {
@@ -174,11 +179,12 @@ public class ContactHelper extends HelperBase {
       String lname = td.get(1).getText();
       String fname = td.get(2).getText();
       String address = td.get(3).getText();
-      String allEmails = td.get(4).getText();
-      String allPhones = td.get(5).getText();
+      String[] allEmails = td.get(4).getText().split("\n");
+      String[] allPhones = td.get(5).getText().split("\n");
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       contacts.add(new ContactData().withId(id).withName(fname).withSurname(lname).withAddress(address)
-              .withAllEmails(allEmails).withAllPhones(allPhones));
+              .withEmail1(allEmails[0]).withEmail1(allEmails[1]).withEmail1(allEmails[2])
+              .withHomePnmbr(allPhones[0]).withMobilePnmbr(allPhones[1]).withWorkPnmbr(allPhones[2]));
     }
     return contacts;
   }
@@ -213,5 +219,5 @@ public class ContactHelper extends HelperBase {
             .withMobilePnmbr(fullInfo[4].substring(3))
             .withWorkPnmbr(fullInfo[5].substring(3));
   }
-  
+
 }
