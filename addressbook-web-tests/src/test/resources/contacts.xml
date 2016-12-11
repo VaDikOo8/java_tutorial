@@ -1,0 +1,107 @@
+<list>
+  <contact>
+    <fname>Name0</fname>
+    <mname>Patronymic0</mname>
+    <lname>Surname0</lname>
+    <address>Full
+Address0</address>
+    <group>[none]</group>
+    <creation>true</creation>
+    <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
+    <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
+    <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <email1>email1@mail.ru</email1>
+    <email2>email2@mail.ru</email2>
+    <email3>email3@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>January</bmonth>
+    <byear>1986</byear>
+    <aday>1</aday>
+    <amonth>January</amonth>
+    <ayear>2006</ayear>
+  </contact>
+  <contact>
+    <fname>Name1</fname>
+    <mname>Patronymic1</mname>
+    <lname>Surname1</lname>
+    <address>Full
+Address1</address>
+    <group>[none]</group>
+    <creation>true</creation>
+    <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
+    <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
+    <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <email1>email1@mail.ru</email1>
+    <email2>email2@mail.ru</email2>
+    <email3>email3@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>January</bmonth>
+    <byear>1986</byear>
+    <aday>1</aday>
+    <amonth>January</amonth>
+    <ayear>2006</ayear>
+  </contact>
+  <contact>
+    <fname>Name2</fname>
+    <mname>Patronymic2</mname>
+    <lname>Surname2</lname>
+    <address>Full
+Address2</address>
+    <group>[none]</group>
+    <creation>true</creation>
+    <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
+    <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
+    <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <email1>email1@mail.ru</email1>
+    <email2>email2@mail.ru</email2>
+    <email3>email3@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>January</bmonth>
+    <byear>1986</byear>
+    <aday>1</aday>
+    <amonth>January</amonth>
+    <ayear>2006</ayear>
+  </contact>
+  <contact>
+    <fname>Name3</fname>
+    <mname>Patronymic3</mname>
+    <lname>Surname3</lname>
+    <address>Full
+Address3</address>
+    <group>[none]</group>
+    <creation>true</creation>
+    <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
+    <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
+    <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <email1>email1@mail.ru</email1>
+    <email2>email2@mail.ru</email2>
+    <email3>email3@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>January</bmonth>
+    <byear>1986</byear>
+    <aday>1</aday>
+    <amonth>January</amonth>
+    <ayear>2006</ayear>
+  </contact>
+  <contact>
+    <fname>Name4</fname>
+    <mname>Patronymic4</mname>
+    <lname>Surname4</lname>
+    <address>Full
+Address4</address>
+    <group>[none]</group>
+    <creation>true</creation>
+    <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
+    <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
+    <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <email1>email1@mail.ru</email1>
+    <email2>email2@mail.ru</email2>
+    <email3>email3@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>January</bmonth>
+    <byear>1986</byear>
+    <aday>1</aday>
+    <amonth>January</amonth>
+    <ayear>2006</ayear>
+  </contact>
+</list>
