@@ -57,31 +57,31 @@ public class ContactDataGenerator {
   private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
     XStream xStream = new XStream();
     xStream.processAnnotations(ContactData.class);
     String xml = xStream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
   private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
-    Writer writer = new FileWriter(file);
-    for (ContactData contact : contacts){
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
-              contact.getFname(), contact.getMname(), contact.getLname(),
-              contact.getAddress(), contact.getGroup(), contact.getEmail1(), contact.getEmail2(), contact.getEmail3(),
-              contact.getHome_pnmbr(), contact.getMobile_pnmbr(), contact.getWork_pnmbr(),
-              contact.getBday(), contact.getBmonth(), contact.getByear(),
-              contact.getAday(), contact.getAmonth(), contact.getAyear()));
+    try (Writer writer = new FileWriter(file)) {
+      for (ContactData contact : contacts) {
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
+                contact.getFname(), contact.getMname(), contact.getLname(),
+                contact.getAddress(), contact.getGroup(), contact.getEmail1(), contact.getEmail2(), contact.getEmail3(),
+                contact.getHome_pnmbr(), contact.getMobile_pnmbr(), contact.getWork_pnmbr(),
+                contact.getBday(), contact.getBmonth(), contact.getByear(),
+                contact.getAday(), contact.getAmonth(), contact.getAyear()));
+      }
     }
-    writer.close();
   }
 
   private List<ContactData> generateContacts(int count) {
@@ -89,7 +89,7 @@ public class ContactDataGenerator {
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withName(String.format("Name%s", i))
               .withPatronymic(String.format("Patronymic%s", i)).withSurname(String.format("Surname%s", i))
-              .withAddress(String.format("Full\nAddress%s", i)).withGroup("[none]")
+              .withAddress(String.format("FullAddress%s", i)).withGroup("[none]")
               .withHomePnmbr("+7 (495) 111-22-33").withMobilePnmbr("+7 (999) 888-99-00").withWorkPnmbr("+7 (495) 333-22-11")
               .withEmail1("email1@mail.ru").withEmail2("email2@mail.ru").withEmail3("email3@mail.ru")
               .withBday("1").withBmonth("January").withByear("1986")
