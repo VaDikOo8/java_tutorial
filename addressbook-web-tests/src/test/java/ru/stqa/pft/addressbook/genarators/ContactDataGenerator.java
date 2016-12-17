@@ -89,8 +89,12 @@ public class ContactDataGenerator {
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withName(String.format("Name%s", i))
               .withPatronymic(String.format("Patronymic%s", i)).withSurname(String.format("Surname%s", i))
+              .withNickname(String.format("Nickname%s", i))
+              .withTitle(String.format("Title%s", i)).withCompany(String.format("Company%s", i))
               .withAddress(String.format("FullAddress%s", i)).withGroup("[none]")
+              .withHomepage(String.format("http://homepage%s.ru", i))
               .withHomePnmbr("+7 (495) 111-22-33").withMobilePnmbr("+7 (999) 888-99-00").withWorkPnmbr("+7 (495) 333-22-11")
+              .withFaxNmbr("12345")
               .withEmail1("email1@mail.ru").withEmail2("email2@mail.ru").withEmail3("email3@mail.ru")
               .withBday("1").withBmonth("January").withByear("1986")
               .withAday("1").withAmonth("January").withAyear("2006"));

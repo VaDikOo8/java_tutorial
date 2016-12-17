@@ -3,16 +3,20 @@
     <fname>Name0</fname>
     <mname>Patronymic0</mname>
     <lname>Surname0</lname>
-    <address>Full
-Address0</address>
+    <nickname>Nickname0</nickname>
+    <title>Title0</title>
+    <company>Company0</company>
+    <address>FullAddress0</address>
     <group>[none]</group>
     <creation>true</creation>
     <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
     <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
     <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <fax__nmbr>12345</fax__nmbr>
     <email1>email1@mail.ru</email1>
     <email2>email2@mail.ru</email2>
     <email3>email3@mail.ru</email3>
+    <homepage>http://homepage0.ru</homepage>
     <bday>1</bday>
     <bmonth>January</bmonth>
     <byear>1986</byear>
@@ -24,16 +28,20 @@ Address0</address>
     <fname>Name1</fname>
     <mname>Patronymic1</mname>
     <lname>Surname1</lname>
-    <address>Full
-Address1</address>
+    <nickname>Nickname1</nickname>
+    <title>Title1</title>
+    <company>Company1</company>
+    <address>FullAddress1</address>
     <group>[none]</group>
     <creation>true</creation>
     <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
     <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
     <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <fax__nmbr>12345</fax__nmbr>
     <email1>email1@mail.ru</email1>
     <email2>email2@mail.ru</email2>
     <email3>email3@mail.ru</email3>
+    <homepage>http://homepage1.ru</homepage>
     <bday>1</bday>
     <bmonth>January</bmonth>
     <byear>1986</byear>
@@ -45,16 +53,20 @@ Address1</address>
     <fname>Name2</fname>
     <mname>Patronymic2</mname>
     <lname>Surname2</lname>
-    <address>Full
-Address2</address>
+    <nickname>Nickname2</nickname>
+    <title>Title2</title>
+    <company>Company2</company>
+    <address>FullAddress2</address>
     <group>[none]</group>
     <creation>true</creation>
     <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
     <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
     <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <fax__nmbr>12345</fax__nmbr>
     <email1>email1@mail.ru</email1>
     <email2>email2@mail.ru</email2>
     <email3>email3@mail.ru</email3>
+    <homepage>http://homepage2.ru</homepage>
     <bday>1</bday>
     <bmonth>January</bmonth>
     <byear>1986</byear>
@@ -66,16 +78,20 @@ Address2</address>
     <fname>Name3</fname>
     <mname>Patronymic3</mname>
     <lname>Surname3</lname>
-    <address>Full
-Address3</address>
+    <nickname>Nickname3</nickname>
+    <title>Title3</title>
+    <company>Company3</company>
+    <address>FullAddress3</address>
     <group>[none]</group>
     <creation>true</creation>
     <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
     <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
     <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <fax__nmbr>12345</fax__nmbr>
     <email1>email1@mail.ru</email1>
     <email2>email2@mail.ru</email2>
     <email3>email3@mail.ru</email3>
+    <homepage>http://homepage3.ru</homepage>
     <bday>1</bday>
     <bmonth>January</bmonth>
     <byear>1986</byear>
@@ -87,16 +103,20 @@ Address3</address>
     <fname>Name4</fname>
     <mname>Patronymic4</mname>
     <lname>Surname4</lname>
-    <address>Full
-Address4</address>
+    <nickname>Nickname4</nickname>
+    <title>Title4</title>
+    <company>Company4</company>
+    <address>FullAddress4</address>
     <group>[none]</group>
     <creation>true</creation>
     <home__pnmbr>+7 (495) 111-22-33</home__pnmbr>
     <mobile__pnmbr>+7 (999) 888-99-00</mobile__pnmbr>
     <work__pnmbr>+7 (495) 333-22-11</work__pnmbr>
+    <fax__nmbr>12345</fax__nmbr>
     <email1>email1@mail.ru</email1>
     <email2>email2@mail.ru</email2>
     <email3>email3@mail.ru</email3>
+    <homepage>http://homepage4.ru</homepage>
     <bday>1</bday>
     <bmonth>January</bmonth>
     <byear>1986</byear>

@@ -3,57 +3,132 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
 
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+
   @Expose
+  @Column(name = "firstname")
   private String fname;
+
   @Expose
+  @Column(name = "middlename")
   private String mname;
+
   @Expose
+  @Column(name = "lastname")
   private String lname;
+
+  @Expose
+  @Column(name = "nickname")
   private String nickname;
+
+  @Expose
+  @Column(name = "title")
   private String title;
+
+  @Expose
+  @Column(name = "company")
   private String company;
+
   @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+
   @Expose
+  @Transient
   private String group;
+
   @Expose
+  @Transient
   public boolean creation = true;
+
   @Expose
+  @Column(name = "home")
+  @Type(type = "text")
   private String home_pnmbr;
+
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobile_pnmbr;
+
   @Expose
+  @Column(name = "work")
+  @Type(type = "text")
   private String work_pnmbr;
+
+  @Expose
+  @Column(name = "fax")
+  @Type(type = "text")
   private String fax_nmbr;
+
+  @Transient
   private String allPhones;
+
   @Expose
+  @Column(name = "email")
+  @Type(type = "text")
   private String email1;
+
   @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+
   @Expose
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
+
+  @Transient
   private String allEmails;
+
+  @Expose
+  @Column(name = "homepage")
+  @Type(type = "text")
   private String homepage;
+
   @Expose
-  private String bday;
+  @Column(name = "bday")
+  @Type(type = "byte")
+  private Byte bday;
+
   @Expose
+  @Column(name = "bmonth")
   private String bmonth;
+
   @Expose
+  @Column(name = "byear")
   private String byear;
+
   @Expose
-  private String aday;
+  @Column(name = "aday")
+  @Type(type = "byte")
+  private Byte aday;
+
   @Expose
+  @Column(name = "amonth")
   private String amonth;
+
   @Expose
+  @Column(name = "ayear")
   private String ayear;
+
+  @Transient
+  private File photo;
 
   public File getPhoto() {
     return photo;
@@ -63,8 +138,6 @@ public class ContactData {
     this.photo = photo;
     return this;
   }
-
-  private File photo;
 
   public int getId() {
     return id;
@@ -142,7 +215,7 @@ public class ContactData {
     return homepage;
   }
 
-  public String getBday() {
+  public Byte getBday() {
     return bday;
   }
 
@@ -154,7 +227,7 @@ public class ContactData {
     return byear;
   }
 
-  public String getAday() {
+  public Byte getAday() {
     return aday;
   }
 
@@ -267,7 +340,7 @@ public class ContactData {
   }
 
   public ContactData withBday(String bday) {
-    this.bday = bday;
+    this.bday = new Byte(bday);
     return this;
   }
 
@@ -282,7 +355,7 @@ public class ContactData {
   }
 
   public ContactData withAday(String aday) {
-    this.aday = aday;
+    this.aday = new Byte(aday);
     return this;
   }
 
@@ -301,8 +374,26 @@ public class ContactData {
     return "ContactData{" +
             "id=" + id +
             ", fname='" + fname + '\'' +
+            ", mname='" + mname + '\'' +
             ", lname='" + lname + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", title='" + title + '\'' +
+            ", company='" + company + '\'' +
             ", address='" + address + '\'' +
+            ", home_pnmbr='" + home_pnmbr + '\'' +
+            ", mobile_pnmbr='" + mobile_pnmbr + '\'' +
+            ", work_pnmbr='" + work_pnmbr + '\'' +
+            ", fax_nmbr='" + fax_nmbr + '\'' +
+            ", email1='" + email1 + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            ", homepage='" + homepage + '\'' +
+            ", bday=" + bday +
+            ", bmonth='" + bmonth + '\'' +
+            ", byear='" + byear + '\'' +
+            ", aday=" + aday +
+            ", amonth='" + amonth + '\'' +
+            ", ayear='" + ayear + '\'' +
             '}';
   }
 
@@ -315,16 +406,52 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (fname != null ? !fname.equals(that.fname) : that.fname != null) return false;
+    if (mname != null ? !mname.equals(that.mname) : that.mname != null) return false;
     if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
-    return address != null ? address.equals(that.address) : that.address == null;
+    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
+    if (title != null ? !title.equals(that.title) : that.title != null) return false;
+    if (company != null ? !company.equals(that.company) : that.company != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (home_pnmbr != null ? !home_pnmbr.equals(that.home_pnmbr) : that.home_pnmbr != null) return false;
+    if (mobile_pnmbr != null ? !mobile_pnmbr.equals(that.mobile_pnmbr) : that.mobile_pnmbr != null) return false;
+    if (work_pnmbr != null ? !work_pnmbr.equals(that.work_pnmbr) : that.work_pnmbr != null) return false;
+    if (fax_nmbr != null ? !fax_nmbr.equals(that.fax_nmbr) : that.fax_nmbr != null) return false;
+    if (email1 != null ? !email1.equals(that.email1) : that.email1 != null) return false;
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
+    if (homepage != null ? !homepage.equals(that.homepage) : that.homepage != null) return false;
+    if (bday != null ? !bday.equals(that.bday) : that.bday != null) return false;
+    if (bmonth != null ? !bmonth.equals(that.bmonth) : that.bmonth != null) return false;
+    if (byear != null ? !byear.equals(that.byear) : that.byear != null) return false;
+    if (aday != null ? !aday.equals(that.aday) : that.aday != null) return false;
+    if (amonth != null ? !amonth.equals(that.amonth) : that.amonth != null) return false;
+    return ayear != null ? ayear.equals(that.ayear) : that.ayear == null;
   }
 
   @Override
   public int hashCode() {
     int result = id;
     result = 31 * result + (fname != null ? fname.hashCode() : 0);
+    result = 31 * result + (mname != null ? mname.hashCode() : 0);
     result = 31 * result + (lname != null ? lname.hashCode() : 0);
+    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+    result = 31 * result + (title != null ? title.hashCode() : 0);
+    result = 31 * result + (company != null ? company.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (home_pnmbr != null ? home_pnmbr.hashCode() : 0);
+    result = 31 * result + (mobile_pnmbr != null ? mobile_pnmbr.hashCode() : 0);
+    result = 31 * result + (work_pnmbr != null ? work_pnmbr.hashCode() : 0);
+    result = 31 * result + (fax_nmbr != null ? fax_nmbr.hashCode() : 0);
+    result = 31 * result + (email1 != null ? email1.hashCode() : 0);
+    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+    result = 31 * result + (email3 != null ? email3.hashCode() : 0);
+    result = 31 * result + (homepage != null ? homepage.hashCode() : 0);
+    result = 31 * result + (bday != null ? bday.hashCode() : 0);
+    result = 31 * result + (bmonth != null ? bmonth.hashCode() : 0);
+    result = 31 * result + (byear != null ? byear.hashCode() : 0);
+    result = 31 * result + (aday != null ? aday.hashCode() : 0);
+    result = 31 * result + (amonth != null ? amonth.hashCode() : 0);
+    result = 31 * result + (ayear != null ? ayear.hashCode() : 0);
     return result;
   }
 }

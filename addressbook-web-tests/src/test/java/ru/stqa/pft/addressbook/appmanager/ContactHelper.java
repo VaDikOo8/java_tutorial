@@ -42,13 +42,13 @@ public class ContactHelper extends HelperBase {
   }
 
   private void fillAnniversary(ContactData contactData) {
-    list("aday", contactData.getAday());
+    list("aday", String.valueOf(contactData.getAday()));
     list("amonth", contactData.getAmonth());
     type(By.name("ayear"), contactData.getAyear());
   }
 
   private void fillBirthday(ContactData contactData) {
-    list("bday", contactData.getBday());
+    list("bday", String.valueOf(contactData.getBday()));
     list("bmonth", contactData.getBmonth());
     type(By.name("byear"), contactData.getByear());
   }
