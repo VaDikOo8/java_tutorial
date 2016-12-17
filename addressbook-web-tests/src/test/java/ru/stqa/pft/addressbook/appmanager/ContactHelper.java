@@ -183,7 +183,7 @@ public class ContactHelper extends HelperBase {
       String[] allPhones = td.get(5).getText().split("\n");
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       contacts.add(new ContactData().withId(id).withName(fname).withSurname(lname).withAddress(address)
-              .withEmail1(allEmails[0]).withEmail1(allEmails[1]).withEmail1(allEmails[2])
+              .withEmail1(allEmails[0]).withEmail2(allEmails[1]).withEmail3(allEmails[2])
               .withHomePnmbr(allPhones[0]).withMobilePnmbr(allPhones[1]).withWorkPnmbr(allPhones[2]));
     }
     return contacts;

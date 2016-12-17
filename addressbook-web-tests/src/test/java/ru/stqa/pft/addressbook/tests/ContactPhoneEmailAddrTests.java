@@ -24,16 +24,16 @@ public class ContactPhoneEmailAddrTests extends TestBase {
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
   }
 
-  private String mergeEmails(ContactData contact) {
-    return Arrays.asList(contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
-            .stream().filter((s -> ! s.equals("")))
-            .collect(Collectors.joining("\n"));
-  }
-
   private String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getHome_pnmbr(), contact.getMobile_pnmbr(), contact.getWork_pnmbr())
             .stream().filter((s -> ! s.equals("")))
             .map(ContactPhoneEmailAddrTests::cleaned)
+            .collect(Collectors.joining("\n"));
+  }
+
+  private String mergeEmails(ContactData contact) {
+    return Arrays.asList(contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
+            .stream().filter((s -> ! s.equals("")))
             .collect(Collectors.joining("\n"));
   }
 
