@@ -44,6 +44,12 @@ public class HelperBase {
     select.selectByVisibleText(option);
   }
 
+  protected void list(String sel, int value) {
+    Select select = new Select(wd.findElement(By.name(sel)));
+    select.getOptions();
+    select.selectByValue(String.valueOf(value));
+  }
+
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();

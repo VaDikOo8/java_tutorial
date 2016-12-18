@@ -76,7 +76,7 @@ public class ContactDataGenerator {
       for (ContactData contact : contacts) {
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
                 contact.getFname(), contact.getMname(), contact.getLname(),
-                contact.getAddress(), contact.getGroup(), contact.getEmail1(), contact.getEmail2(), contact.getEmail3(),
+                contact.getAddress(), contact.getEmail1(), contact.getEmail2(), contact.getEmail3(),
                 contact.getHome_pnmbr(), contact.getMobile_pnmbr(), contact.getWork_pnmbr(),
                 contact.getBday(), contact.getBmonth(), contact.getByear(),
                 contact.getAday(), contact.getAmonth(), contact.getAyear()));
@@ -91,7 +91,7 @@ public class ContactDataGenerator {
               .withPatronymic(String.format("Patronymic%s", i)).withSurname(String.format("Surname%s", i))
               .withNickname(String.format("Nickname%s", i))
               .withTitle(String.format("Title%s", i)).withCompany(String.format("Company%s", i))
-              .withAddress(String.format("FullAddress%s", i)).withGroup("[none]")
+              .withAddress(String.format("FullAddress%s", i))
               .withHomepage(String.format("http://homepage%s.ru", i))
               .withHomePnmbr("+7 (495) 111-22-33").withMobilePnmbr("+7 (999) 888-99-00").withWorkPnmbr("+7 (495) 333-22-11")
               .withFaxNmbr("12345")

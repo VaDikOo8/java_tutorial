@@ -19,7 +19,6 @@ public class ContactModificationTests extends TestBase {
       app.contact().create(new ContactData()
               .withName("Name").withPatronymic("Patronymic").withSurname("Surname").withNickname("nickname1234")
               .withTitle("title1").withCompany("home").withAddress("Moscow, Russia").withCreationFlag(true)
-              .withGroup("[none]")
               .withHomePnmbr("+7 (495) 123-45-67").withMobilePnmbr("+7 (937) 555-44-11").withWorkPnmbr("+7 (495) 333-33-33")
               .withEmail1("mail1@mail.ru").withEmail2("mail2@rambler.ru").withEmail3("mail3@nxt.ru")
               .withHomepage("http://vk.com/ivanov_ivan")

@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.common.collect.ForwardingSet;
+import ru.stqa.pft.addressbook.appmanager.DbHelper;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -49,4 +50,5 @@ public class Contacts extends ForwardingSet<ContactData> {
     contacts.add(contact);
     return contacts;
   }
+
 }

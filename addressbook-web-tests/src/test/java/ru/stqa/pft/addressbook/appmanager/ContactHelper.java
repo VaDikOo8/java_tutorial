@@ -73,11 +73,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), contactData.getAddress());
 
     if (contactData.creation) {
-      list("new_group", contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        list("new_group", contactData.getGroups().iterator().next().getName());
+      } else {
+        Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
     }
-
   }
 
   private void fillFIO(ContactData contactData) {
@@ -123,6 +125,15 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  private void addingInGroup(int id) {
+    list("to_group", id);
+    click(By.name("add"));
+  }
+
+  private void removingFromGroup() {
+    click(By.name("remove"));
+  }
+
   public void returnHomePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
@@ -135,6 +146,18 @@ public class ContactHelper extends HelperBase {
       return;
     }
     click(By.linkText("home"));
+  }
+
+  public void gotoGroupPage(int id) {
+    click(By.cssSelector(String.format("a[href='./?group=%s']", id)));
+  }
+
+  private void selectGroupById(int id) {
+    list("group", id);
+  }
+
+  private void selectAllGroups() {
+    list("group", "[all]");
   }
 
   public boolean haveFullContactList() {
@@ -165,6 +188,21 @@ public class ContactHelper extends HelperBase {
     fillContactForm(contact);
     submitContactModification();
     returnHomePage();
+  }
+
+  public void toGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    addingInGroup(group.getId());
+    gotoGroupPage(group.getId());
+    selectAllGroups();
+  }
+
+  public void fromGroup(ContactData contact, GroupData group) {
+    selectGroupById(group.getId());
+    selectContactById(contact.getId());
+    removingFromGroup();
+    gotoGroupPage(group.getId());
+    selectAllGroups();
   }
 
   public int getContactCount() {

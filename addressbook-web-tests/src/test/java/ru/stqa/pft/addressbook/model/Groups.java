@@ -49,4 +49,9 @@ public class Groups extends ForwardingSet<GroupData> {
     groups.add(group);
     return groups;
   }
+
+  public Groups addedInGroup(Groups groups, GroupData group) {
+    groups.add(group);
+    return groups;
+  }
 }

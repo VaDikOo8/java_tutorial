@@ -3,10 +3,13 @@ package ru.stqa.pft.addressbook.tests;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,6 +25,15 @@ import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
+  @BeforeMethod
+  public void ensurePreconditions() {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().
+              withName("GroupTest").withHeader("group_header_test").withFooter("group_footer_test"));
+    }
+  }
+
   @DataProvider
   public Iterator<Object[]> validContactsFromCsv() throws IOException {
     List<Object[]> list = new ArrayList<>();
@@ -30,7 +42,7 @@ public class ContactCreationTests extends TestBase {
       while (line != null) {
         String[] split = line.split(";");
         list.add(new Object[]{new ContactData().withName(split[0]).withPatronymic(split[1]).withSurname(split[2])
-                .withAddress(split[3]).withGroup(split[4]).withEmail1(split[5]).withEmail2(split[6]).withEmail3(split[7])
+                .withAddress(split[3]).withEmail1(split[5]).withEmail2(split[6]).withEmail3(split[7])
                 .withHomePnmbr(split[8]).withMobilePnmbr(split[9]).withWorkPnmbr(split[10])
                 .withBday(split[11]).withBmonth(split[12]).withByear(split[13])
                 .withAday(split[14]).withAmonth(split[15]).withAyear(split[16])});
@@ -74,13 +86,16 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactsCreationFromFile(ContactData contact) {
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
-    app.contact().create(contact);
+    app.contact().create(contact.inGroup(groups.iterator().next()));
     Contacts after = app.db().contacts();
     assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(before
             .withAdded(contact.withId(after.stream().mapToInt((c) -> (c.getId())).max().getAsInt()))));
+
+    verifyContactListInUI();
   }
 
   @Test(enabled = false)
@@ -90,7 +105,7 @@ public class ContactCreationTests extends TestBase {
     ContactData contact = new ContactData()
             .withName("Ivan").withPatronymic("Petrovich").withSurname("Sidorov").withNickname("sidorov81")
             .withTitle("title1").withCompany("home").withAddress("St. Peterburg, Russia").withCreationFlag(true)
-            .withPhoto(photo).withGroup("[none]")
+            .withPhoto(photo)
             .withHomePnmbr("+7 (495) 333-45-67").withMobilePnmbr("+7 (937) 111-44-11").withWorkPnmbr("+7 (495) 333-22-11")
             .withEmail1("mail1@mail.ru").withEmail2("mail2@rambler.ru").withEmail3("mail3@nxt.ru")
             .withHomepage("http://vk.com/sidorov_ivan")

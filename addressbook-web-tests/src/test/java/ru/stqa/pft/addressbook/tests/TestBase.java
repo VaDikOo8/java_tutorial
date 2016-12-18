@@ -1,8 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.eclipse.jetty.websocket.common.events.AbstractEventDriver;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +15,6 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
