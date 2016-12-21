@@ -41,11 +41,19 @@ public class ApplicationManager {
       wd = new OperaDriver();
     }
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
+    getProperty("web.baseUrl");
+    //wd.get(properties.getProperty("web.baseUrl"));
   }
 
   public void stop() {
     wd.quit();
   }
 
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+  }
 }
