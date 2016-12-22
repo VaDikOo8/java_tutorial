@@ -1,0 +1,72 @@
+package ru.stqa.pft.mantis.appmanager;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
+
+import java.io.File;
+
+/**
+ * Created by Вадим on 29.10.2016.
+ */
+public class HelperBase {
+  protected ApplicationManager app;
+  protected WebDriver wd;
+
+  public HelperBase(ApplicationManager app) {
+    this.app = app;
+    this.wd = app.getDriver();
+  }
+
+  protected void click(By locator) {
+    wd.findElement(locator).click();
+  }
+
+  protected void type(By locator, String text) {
+
+    if (text != null) {
+      WebElement element = wd.findElement(locator);
+      String existingText = element.getAttribute("value");
+      if (! text.equals(existingText)) {
+        element.clear();
+        element.sendKeys(text);
+      }
+    }
+
+  }
+
+  protected void attach(By locator, File file) {
+    if (file != null) {
+      wd.findElement(locator).sendKeys(file.getAbsolutePath());
+    }
+  }
+
+  protected void list(String sel, String option) {
+    Select select = new Select(wd.findElement(By.name(sel)));
+    select.getOptions();
+    select.selectByVisibleText(option);
+  }
+
+  protected void list(String sel, int value) {
+    Select select = new Select(wd.findElement(By.name(sel)));
+    select.getOptions();
+    select.selectByValue(String.valueOf(value));
+  }
+
+  public boolean isAlertPresent() {
+    try {
+      wd.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  public boolean isElementPresent(By locator) {
+    try {
+      wd.findElement(locator);
+      return true;
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
+  }
+}
