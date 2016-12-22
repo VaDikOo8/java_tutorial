@@ -24,6 +24,9 @@ public class ApplicationManager {
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private SessionHelper sessionHelper;
+  private DbHelper dbHelper;
+  private UserHelper userHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -33,6 +36,8 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+    dbHelper = new DbHelper();
   }
 
   public void stop() {
@@ -70,8 +75,16 @@ public class ApplicationManager {
     return mailHelper;
   }
 
+  public DbHelper db() {
+    return dbHelper;
+  }
+
+  public UserHelper user() {
+    return userHelper;
+  }
+
   public WebDriver getDriver() {
-    if (wd == null) {
+        if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
       } else if (browser.equals(BrowserType.CHROME)) {
@@ -83,7 +96,9 @@ public class ApplicationManager {
       }
       wd.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
       wd.get(properties.getProperty("web.baseUrl"));
+      sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPass"));
     }
     return wd;
   }
+
 }
