@@ -24,7 +24,6 @@ public class ApplicationManager {
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
-  private SessionHelper sessionHelper;
   private DbHelper dbHelper;
   private UserHelper userHelper;
 
@@ -48,6 +47,10 @@ public class ApplicationManager {
 
   public HttpSession newSession() {
     return new HttpSession(this);
+  }
+
+  public SessionHelper sessionHelper() {
+    return new SessionHelper(this);
   }
 
   public String getProperty(String key) {
@@ -80,11 +83,11 @@ public class ApplicationManager {
   }
 
   public UserHelper user() {
-    return userHelper;
+    return new UserHelper(this);
   }
 
   public WebDriver getDriver() {
-        if (wd == null) {
+    if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
       } else if (browser.equals(BrowserType.CHROME)) {
@@ -96,7 +99,7 @@ public class ApplicationManager {
       }
       wd.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
       wd.get(properties.getProperty("web.baseUrl"));
-      sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPass"));
+      sessionHelper().login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPass"));
     }
     return wd;
   }

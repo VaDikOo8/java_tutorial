@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "mantis_user_table")
 public class UserData {
@@ -58,20 +59,24 @@ public class UserData {
     return this;
   }
 
-  public void withUsername(String username) {
+  public UserData withUsername(String username) {
     this.username = username;
+    return this;
   }
 
-  public void withRealname(String realname) {
+  public UserData withRealname(String realname) {
     this.realname = realname;
+    return this;
   }
 
-  public void withEmail(String email) {
+  public UserData withEmail(String email) {
     this.email = email;
+    return this;
   }
 
-  public void withEnabled(byte enabled) {
+  public UserData withEnabled(byte enabled) {
     this.enabled = enabled;
+    return this;
   }
 
   @Override

@@ -34,12 +34,4 @@ public class DbHelper {
     return new Users(result);
   }
 
-  public void refresh(UserData users) {
-    Session session = sessionFactory.openSession();
-    session.beginTransaction();
-    session.refresh(users);
-    session.getTransaction().commit();
-    session.close();
-  }
-
 }

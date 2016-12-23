@@ -21,36 +21,28 @@ public class ChangeUserPassTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() throws IOException {
     app.mail().start();
-    Users users = app.db().users();
-
-    if (users.size() <= 1 && users.iterator().next().getId() != 1) {
-      long now = System.currentTimeMillis();
-      String user = String.format("user%s", now);
-      String password = "password";
-      String email = String.format("user%s@localhost.localdomain", now);
-      app.registration().start(user, email);
-      List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-      String confirmationLink = app.mail().findConfirmationLink(mailMessages, email);
-      app.registration().finish(confirmationLink, password);
-      assertTrue(app.newSession().login(user, password));
-    }
   }
 
   @Test
   public void testChangeUserPass() throws IOException {
     Users users = app.db().users();
-    int id = users.iterator().next().getId();
-    app.user().resetPassword(new UserData().withId(id));
-    String username = new UserData().getUsername();
-    String password = "password";
-    String email = new UserData().getEmail();
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-    String confirmationLink = app.mail().findConfirmationLink(mailMessages, email);
-    app.registration().finish(confirmationLink, password);
-    assertTrue(app.newSession().login(username, password));
-    HttpSession session = app.newSession();
-    assertTrue(session.login(username, "root"));
-    assertTrue(session.isLoggedInAs("administrator"));
+    for (UserData user : users) {
+      if (user.getUsername().equals("user_test_1")) {
+        int id = user.getId();
+        String username = user.getUsername();
+        String email = user.getEmail();
+        app.user().resetPassword(new UserData().withId(id));
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
+        String confirmationLink = app.mail().findConfirmationLink(mailMessages, email);
+        String password = "pass1";
+        app.registration().finish(confirmationLink, password);
+        assertTrue(app.newSession().login(username, password));
+
+        HttpSession session = app.newSession();
+        assertTrue(session.login(username, password));
+        assertTrue(session.isLoggedInAs(username));
+      }
+    }
   }
 
   @AfterMethod(alwaysRun = true)

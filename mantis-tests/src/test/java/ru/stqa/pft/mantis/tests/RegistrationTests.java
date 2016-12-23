@@ -23,10 +23,10 @@ public class RegistrationTests extends TestBase {
 
   @Test
   public void testRegistration() throws IOException {
-    long now = System.currentTimeMillis();
-    String user = String.format("user%s", now);
+    //long now = System.currentTimeMillis();
+    String user = String.format("user_test_1");
     String password = "password";
-    String email = String.format("user%s@localhost.localdomain", now);
+    String email = String.format("user_test_1@localhost.localdomain");
     app.registration().start(user, email);
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
