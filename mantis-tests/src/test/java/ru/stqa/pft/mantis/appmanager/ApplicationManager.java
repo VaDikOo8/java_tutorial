@@ -26,6 +26,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private DbHelper dbHelper;
   private UserHelper userHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -82,8 +83,25 @@ public class ApplicationManager {
     return dbHelper;
   }
 
+  /**
+   *
+   * @return
+   * public UserHelper user() {
+   *  return new UserHelper(this);
+   * }
+   */
   public UserHelper user() {
-    return new UserHelper(this);
+    if (userHelper == null) {
+      userHelper = new UserHelper(this);
+    }
+    return userHelper;
+  }
+
+  public SoapHelper soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
   }
 
   public WebDriver getDriver() {
