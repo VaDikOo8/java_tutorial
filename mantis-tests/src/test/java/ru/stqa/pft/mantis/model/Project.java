@@ -3,6 +3,7 @@ package ru.stqa.pft.mantis.model;
 /**
  * Created by Вадим on 24.12.2016.
  */
+
 public class Project {
 
   private int id;
@@ -16,6 +17,7 @@ public class Project {
     return name;
   }
 
+
   public Project withId(int id) {
     this.id = id;
     return this;
@@ -25,4 +27,5 @@ public class Project {
     this.name = name;
     return this;
   }
+
 }

@@ -3,6 +3,7 @@ package ru.stqa.pft.mantis.model;
 /**
  * Created by Вадим on 24.12.2016.
  */
+
 public class Issue {
 
   private int id;
@@ -10,6 +11,7 @@ public class Issue {
   private String description;
   private Project project;
   private String status;
+
 
   public int getId() {
     return id;
@@ -30,6 +32,7 @@ public class Issue {
   public String getStatus() {
     return status;
   }
+
 
   public Issue withId(int id) {
     this.id = id;
@@ -55,4 +58,5 @@ public class Issue {
     this.status = status;
     return this;
   }
+
 }

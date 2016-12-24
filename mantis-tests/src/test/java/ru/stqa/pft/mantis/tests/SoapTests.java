@@ -3,7 +3,6 @@ package ru.stqa.pft.mantis.tests;
 import org.testng.annotations.Test;
 import ru.stqa.pft.mantis.model.Issue;
 import ru.stqa.pft.mantis.model.Project;
-
 import javax.xml.rpc.ServiceException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
@@ -14,6 +13,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by Вадим on 24.12.2016.
  */
+
 public class SoapTests extends TestBase{
 
   @Test
@@ -26,6 +26,7 @@ public class SoapTests extends TestBase{
     }
   }
 
+
   @Test
   public void testCreateIssue() throws RemoteException, ServiceException, MalformedURLException {
     Set<Project> projects = app.soap().getProjects();
@@ -34,4 +35,5 @@ public class SoapTests extends TestBase{
     Issue created = app.soap().addIssue(issue);
     assertEquals(issue.getSummary(), created.getSummary());
   }
+
 }
