@@ -87,14 +87,14 @@ public class ApplicationManager {
    *
    * @return
    * public UserHelper user() {
-   *  return new UserHelper(this);
+   * return new UserHelper(this);
+   * if (userHelper == null) {
+   * userHelper = new UserHelper(this);
    * }
+   * return userHelper;
    */
   public UserHelper user() {
-    if (userHelper == null) {
-      userHelper = new UserHelper(this);
-    }
-    return userHelper;
+   return new UserHelper(this);
   }
 
   public SoapHelper soap() {
