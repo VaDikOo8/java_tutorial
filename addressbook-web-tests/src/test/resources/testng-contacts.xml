@@ -6,6 +6,10 @@
             <class name="ru.stqa.pft.addressbook.tests.ContactCreationTests" />
             <class name="ru.stqa.pft.addressbook.tests.ContactModificationTests" />
             <class name="ru.stqa.pft.addressbook.tests.ContactDeletionTests" />
+            <class name="ru.stqa.pft.addressbook.tests.ContactAddingInGroupTests" />
+            <class name="ru.stqa.pft.addressbook.tests.ContactRemovingFromGroupTests" />
+            <class name="ru.stqa.pft.addressbook.tests.ContactInfoTests" />
+            <class name="ru.stqa.pft.addressbook.tests.ContactPhoneEmailAddrTests" />
         </classes>
     </test>
 </suite>
