@@ -11,6 +11,6 @@ public class RectangleTests {
   @Test
   public void testArea() {
     Rectangle r = new Rectangle(5, 6);
-    Assert.assertEquals(r.area(), 30.0);
+    Assert.assertEquals(r.area(), 31.0);
   }
 }
