@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Вадим on 29.10.2016.
  */
+
 public class ApplicationManager {
   private final Properties properties;
   WebDriver wd;
@@ -43,6 +43,7 @@ public class ApplicationManager {
 
     dbHelper = new DbHelper();
 
+
     if ("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
@@ -59,6 +60,7 @@ public class ApplicationManager {
       capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
+
 
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.MILLISECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
