@@ -12,22 +12,25 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by Вадим on 24.12.2016.
  */
+
 public class RestTests extends TestBase {
+
 
   @BeforeClass
   public void init() {
     RestAssured.authentication = RestAssured.basic("LSGjeU4yP1X493ud1hNniA==", "");
   }
 
+
   @Test
   public void testCreateIssue() throws IOException {
-    skipIfNotFixed(1);
+    skipIfNotFixed(9);
     Set<Issue> oldIssues = new RestHelper().getIssues();
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     int issueId = new RestHelper().createIssue(newIssue);
     Set<Issue> newIssues = new RestHelper().getIssues();
     oldIssues.add(newIssue.withId(issueId));
     assertEquals(newIssues, oldIssues);
-  }
 
+  }
 }

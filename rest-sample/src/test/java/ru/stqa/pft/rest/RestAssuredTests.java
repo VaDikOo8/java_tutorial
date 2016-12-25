@@ -16,15 +16,19 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by Вадим on 24.12.2016.
  */
+
 public class RestAssuredTests {
+
 
   @BeforeClass
   public void init() {
     RestAssured.authentication = RestAssured.basic("LSGjeU4yP1X493ud1hNniA==", "");
   }
 
+
   @Test
   public void testCreateIssue() throws IOException {
+
 
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue 2").withDescription("New test issue 2");
@@ -34,12 +38,14 @@ public class RestAssuredTests {
     assertEquals(newIssues, oldIssues);
   }
 
+
   private Set<Issue> getIssues() throws IOException {
     String json = RestAssured.get("http://demo.bugify.com/api/issues.json").asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
   }
+
 
   private int createIssue(Issue newIssue) throws IOException {
     String json = RestAssured.given()
@@ -49,4 +55,5 @@ public class RestAssuredTests {
     JsonElement parsed = new JsonParser().parse(json);
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
+
 }

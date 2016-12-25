@@ -3,12 +3,15 @@ package ru.stqa.pft.rest;
 /**
  * Created by Вадим on 24.12.2016.
  */
+
 public class Issue {
+
 
   private int id;
   private String subject;
   private String description;
   private int status;
+
 
   public int getId() {
     return id;
@@ -26,6 +29,7 @@ public class Issue {
     return status;
   }
 
+
   public Issue withId(int id) {
     this.id = id;
     return this;
@@ -41,10 +45,12 @@ public class Issue {
     return this;
   }
 
+
   public Issue withStatus(int status) {
     this.status = status;
     return this;
   }
+
 
   @Override
   public boolean equals(Object o) {
@@ -58,6 +64,7 @@ public class Issue {
     if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
     return description != null ? description.equals(issue.description) : issue.description == null;
   }
+
 
   @Override
   public int hashCode() {

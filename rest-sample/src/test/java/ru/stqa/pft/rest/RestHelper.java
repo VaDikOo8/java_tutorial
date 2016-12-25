@@ -15,6 +15,7 @@ import java.util.Set;
 /**
  * Created by Вадим on 24.12.2016.
  */
+
 public class RestHelper {
 
   public Set<Issue> getIssues() throws IOException {
@@ -28,6 +29,7 @@ public class RestHelper {
     return Executor.newInstance().auth("LSGjeU4yP1X493ud1hNniA==", "");
   }
 
+
   public int createIssue(Issue newIssue) throws IOException {
     String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
             .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
@@ -37,9 +39,11 @@ public class RestHelper {
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
 
-  public String getIssueStatus(int issueId) {
+  public String getIssueStatus(int issueId) throws IOException {
     String json = RestAssured.get("http://demo.bugify.com/api/issues/" + issueId + ".json").asString();
     JsonElement parsed = new JsonParser().parse(json);
-    return parsed.getAsJsonObject().get("state_name").getAsString();
+    return parsed.getAsJsonObject().get("issues").getAsJsonArray()
+            .getAsJsonArray().get(0).getAsJsonObject().get("state_name").getAsString();
   }
+
 }
